@@ -17,7 +17,11 @@ module.exports = (app) => {
 
     try {
       await image.save();
-      res.status(200).send('Image uploaded successfully.');
+      res.status(200).json({
+        message: 'Image uploaded successfully.',
+        id: image._id,
+        url: `/image/${image._id}`
+      });
     } catch (err) {
       console.error(err);
       res.status(500).send('Failed to upload image.');
